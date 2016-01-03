@@ -42,7 +42,255 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				
-				<section style="text-align: left;">
+				<section>
+					<h1>Webpack intro</h1>
+					<p><small>Created by zhangxu</small></p>
+				</section>
+
+                <section>
+                    <h2>Webpack</h2>
+                    <img src="images/webpack.png" alt="">
+                </section>
+
+                <section>
+                    <h2>What is module bundler</h2>
+                </section>
+
+                <section>
+                    a.js
+                    <pre>
+                        <code class="javascript">
+                            var b = require('./b.js');
+                            console.log(b);
+                        </code>
+                    </pre>
+
+                    b.js
+                    <pre>
+                        <code class="javascript">
+                            module.exports = 42;
+                        </code>
+                    </pre>
+                </section>
+
+                <section>
+                    <h2>bundle</h2>
+                    <p>
+                        bundle.js can now executed in browser
+                    </p>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>How does webpack work?</h3>
+                    </section>
+                    <section>
+                        <h4>command line</h4>
+                        <pre>
+                            <code class="javascript">$ webpack entry output</code>
+                        </pre>
+
+                        <pre>
+                            <code class="javascript">$ webpack ./a.js bundle.js</code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        <h4>use config file</h4>
+                        <pre>
+                            <code class="javascript">$ webpack --config "path to config file"</code>
+                        </pre>
+
+                        <pre>
+                            <code class="javascript">
+moudle.exports = {
+    entry: path.resove(__dirname, "./a.js"),
+
+    output: {
+        path: __dirname,
+        filename: "bundle.js"
+    }
+};
+                            </code>
+                        </pre>
+
+                        <p>default config file webpack.config.js</p>
+                    </section>
+
+                    <section>
+                        <h2>bundle.js file</h2>
+                        <ul>
+                            <li>A small module system at the beginning</li>
+                            <li>File names are transformed to ids</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        What about different module styles
+                    </section>
+                    <section>
+                        CommonJS
+                         <pre>
+                            <code class="javascript">
+var moudleA = require("./a.js");
+module.exports = 42;
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        AMD
+                        <pre>
+                            <code class="javascript">
+define(["./a.js"] , function (moduleA) {
+    return 42;
+});
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        ES6 modules
+                        <pre>
+                            <code class="javascript">
+import someModule from "./someModule.js";
+export default 42;
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        <p>websites are not just javascript</p>
+
+                        <ul>
+                            <li>html</li>
+                            <li>css</li>
+                            <li>images</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        What if we want require everything
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        HelloWorld.js
+                        <pre>
+                            <code class="javascript">
+var HelloWorld = View.extend({
+    template: require("./HelloWorld.html"),
+    styles: require("./HelloWorld.css")
+});
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        HelloWorld.html
+                        <pre>
+                            <code class="hljs">
+<div class="hello-world">
+    <h1>Hello World</h1>
+</div>
+                            </code>
+                        </pre>
+
+                        HelloWorld.css
+                        <pre>
+                            <code class="hljs">
+.hello-world h1 {
+    color: red;
+}
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        But webpack doesn't understand html and css, it's just module bundler for javascript
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
+                        Loaders
+                        <blockquote>
+                            Loaders are transformations that are applied on files.
+                            They preprocess files. For instance they can transform CoffeeScript to JavaScript.
+                        </blockquote>
+                        <a href="http://webpack.github.io/docs/loaders.html" target="_blank">webpack.github.io/docs/loaders.html</a>
+                    </section>
+
+                    <section>
+                        raw-loder
+                        <pre>
+                            <code class="hljs">
+<div class="hello-world">
+    <h1>Hello World</h1>
+</div>
+                            </code>
+                        </pre>
+
+                        transform to
+                        <pre>
+                            <code class="hljs">
+module.exports = "<div class=\"hello-world\">\n
+            <h1>Hello world</h1>\n</div>";
+                            </code>
+                        </pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        How are loaders applied?
+                    </section>
+
+                    <section>
+                        First we need install it
+                        <pre>
+                            <code class="javascript">
+$ npm install raw-loader --save
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        Inline
+
+                        <pre>
+                            <code class="javascript">
+var HelloWorld = View.extend({
+    template: require("raw!./HelloWorld.html"),
+    styles: require("raw!./HelloWorld.css")
+});
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        via config
+
+                        <pre>
+                            <code class="javascript">
+module.exports = {
+    module: {
+        loaders: [
+            { test: /\.html$|\.css$/i, loader: "raw" }
+        ]
+    }
+};
+                            </code>
+                        </pre>
+                    </section>
+                </section>
+
+				
+				<section style="text-align: center;">
 					<h1>THE END</h1>
 				</section>
 
