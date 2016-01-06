@@ -48,6 +48,29 @@
 				</section>
 
                 <section>
+                    <section>
+                        <h2>The Problem</h2>
+                        <ul>
+                            <li>File Size</li>
+                            <li>Requests</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        Different Situation
+                        <img src="images/prefer.png" alt="">
+                    </section>
+
+                    <section>
+                        <h3>Two Concerns</h3>
+                        <ul>
+                            <li>Packaging Concern (Developers Aspect)</li>
+                            <li>Loading Concern (Browsers)</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
                     <h2>Webpack</h2>
                     <img src="images/webpack.png" alt="">
                 </section>
@@ -178,45 +201,6 @@ export default 42;
 
                 <section>
                     <section>
-                        HelloWorld.js
-                        <pre>
-                            <code class="javascript">
-var HelloWorld = View.extend({
-    template: require("./HelloWorld.html"),
-    styles: require("./HelloWorld.css")
-});
-                            </code>
-                        </pre>
-                    </section>
-
-                    <section>
-                        HelloWorld.html
-                        <pre>
-                            <code class="hljs">
-<div class="hello-world">
-    <h1>Hello World</h1>
-</div>
-                            </code>
-                        </pre>
-
-                        HelloWorld.css
-                        <pre>
-                            <code class="hljs">
-.hello-world h1 {
-    color: red;
-}
-                            </code>
-                        </pre>
-                    </section>
-
-                    <section>
-                        But webpack doesn't understand html and css, it's just module bundler for javascript
-                    </section>
-
-                </section>
-
-                <section>
-                    <section>
                         Loaders
                         <blockquote>
                             Loaders are transformations that are applied on files.
@@ -254,7 +238,7 @@ module.exports = "<div class=\"hello-world\">\n
                         First we need install it
                         <pre>
                             <code class="javascript">
-$ npm install raw-loader --save
+$ npm install css-loader style-loader --save
                             </code>
                         </pre>
                     </section>
@@ -264,10 +248,7 @@ $ npm install raw-loader --save
 
                         <pre>
                             <code class="javascript">
-var HelloWorld = View.extend({
-    template: require("raw!./HelloWorld.html"),
-    styles: require("raw!./HelloWorld.css")
-});
+require("style!css!./style.css");
                             </code>
                         </pre>
                     </section>
@@ -280,7 +261,7 @@ var HelloWorld = View.extend({
 module.exports = {
     module: {
         loaders: [
-            { test: /\.html$|\.css$/i, loader: "raw" }
+            { test: /\.css$/, loader: "!style!css" }
         ]
     }
 };
@@ -289,9 +270,58 @@ module.exports = {
                     </section>
                 </section>
 
+                <section>
+                    <section>
+                        <h3>Let's code</h3>
+                        <img src="images/code.png" width="600px" alt="">
+                    </section>
+
+                    <section>
+                        <p>Demo3</p>
+                    <pre>
+                        <code class="hljs">
+$ https://github.com/raingxm/webpack-demo3.git
+                        </code>
+                    </pre>
+
+                        <pre>
+                        <code class="hljs">
+$ npm install
+                        </code>
+                    </pre>
+                    </section>
+
+                    <section>
+                        <p>Demo4</p>
+                        <pre>
+                            <code class="hljs">
+$ https://github.com/Workfront/webpack-start.git
+                            </code>
+                        </pre>
+                    </section>
+                    <section>
+                        <p>Demo5</p>
+                        <pre>
+                            <code class="hljs">
+$ https://github.com/Workfront/webpack-time-logger.git
+                            </code>
+                        </pre>
+                    </section>
+
+                    <section>
+                        <p>Demo6</p>
+                        <pre>
+                             <code class="hljs">
+$ https://github.com/jesseskinner/react-webpack-demo.git
+                             </code>
+                        </pre>
+                    </section>
+                </section>
+
+
 				
 				<section style="text-align: center;">
-					<h1>THE END</h1>
+					<h2>THE END</h2>
 				</section>
 
 			</div>

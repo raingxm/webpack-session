@@ -1,3 +1,7 @@
 .reveal a {
 	color: white;
 }
+
+.reveal .slides section img {
+	border: 0;
+}
